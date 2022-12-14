@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { setCamsAction, updateCamsAction } from './services/actions/camsAction';
+
 
 function App() {
-  return (
+  useEffect(()=>{
+    updateCamsAction({NomeCamera: 'SG01', endereço: "Av. Coronel"}, '167');  
+  },[])
+  return (   
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
