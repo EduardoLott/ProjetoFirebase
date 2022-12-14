@@ -1,29 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { setCamsAction, updateCamsAction } from './services/actions/camsAction';
+import { getCamsObserver } from './services/observers/camsObservers';
 
 
 function App() {
+  const [cams, setCams] = useState<any[]>([]);
   useEffect(()=>{
-    updateCamsAction({NomeCamera: 'SG01', endereço: "Av. Coronel"}, '167');  
+    getCamsObserver(setCams);
   },[])
+  
   return (   
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {cams.map((elem)=>(
+        <p>{elem.NomeCamera}</p>
+      ))}
     </div>
   );
 }
